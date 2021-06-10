@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block menu %}
+<ul class="nav navbar-nav" >
+    <div >
+    <div class="nav navbar-nav">
+    <li ><a href="/">BOSH SAHIFA</a></li>
+    <li><a href="{% url 'markazlar' %}">DXM MANZILLARI</a></li>
+    <li class="current"><a href="{% url 'gallery' %}">GALLERY</a></li>
+    <li><a href="{% url 'about' %}">BIZNING MANZIL</a></li>
+    {% if user.is_authenticated %}
+    <input type='hidden'>
+    {% else %}
+    <li><a href="{% url 'login_user' %}">KIRISH</a></li>
+    <li><a href="{% url 'signup' %}">REGISTR</a></li>
+    </div>
+    <div>
+    <li>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <li><a href="{% url 'user_account' %}"> SHAXSIY KABINET</a></li>
+    <form action="{% url 'logout_user' %}" method="post" class="chiqish" style="display: inline-block">
+        {% csrf_token %}
+        <button type='submit' class="chiqish_tugma"  value="">
+        
+        CHIQISH<img id="chiqish" width="10%" height="25px" src="{% static 'blog/img/icon/chiqish22.png' %}" alt="">
+        </button>
+    </form>
+    {% endif %}
+    </li>
+    </div></div>
+</ul>
+{% endblock menu %}
+
+{% block content %}
+  	<!-- menu start -->	
+	
+<!-- gallery start -->
+
+
+<div class="container ">
+  <div class="row ">
+      <div class="col-md-12">
+          <div class="templatemo_gallery_left shadow">
+            <div class="templatemo_gallerymid_title">RASMLARDA XIZMAT TURLARI</div>
+            {% if image %}
+                {% for i in image %}
+                <div class="col-sm-3 margin30">
+                <img src="{{i.rasm.url}}" alt="gallery 1">
+                    <div class="over">
+                  {% if i.sarlavha %}<span class="title"><a href="{% url 'onegallery' i.id %}"> {{i.sarlavha|safe | truncatechars:50}} </a></span> {% endif %}
+                    {% if i.matn %}<span class="text" ><a href="{% url 'onegallery' i.id %}"> {{i.matn|safe | truncatechars:50}} </a></span>{% endif %}
+                    </div>
+               </div>
+                {% endfor %}
+            {% else %} 
+              <h2>Rasmlar mavjud emas!</h2>
+            {% endif %}                       
+          <!-- paginator start -->
+           <div class="col-md-12" style="padding-left: 33px">
+              <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                      <li class="page-item">
+                      {% if image.has_previous %}
+                      <a href="{% url 'gallery' %}?page={{image.previous_page_number}}">Orqaga</a>
+                      {% endif %}
+                      </li>
+
+                      {% for i in image.paginator.page_range %}
+                      <li class="page-item"><a class="page-link " href="?page={{i}}" >{{i}}</a></li>
+                      {% endfor %}    
+
+                      <li class="page-item">
+                      {% if image.has_next %}
+                      <a href="{% url 'gallery' %}?page={{image.next_page_number}}">Oldinga</a>
+                      {% endif %}
+                      </li>
+                  </ul>
+              </nav>
+          </div>
+          <!-- paginator end -->
+        </div>
+      </div>
+  </div>
+</div>
+<!-- gallery end -->
+    
+	
+
+{% endblock %}

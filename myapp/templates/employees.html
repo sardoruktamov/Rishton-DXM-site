@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+
+{% block menu %}
+<ul class="nav navbar-nav" >
+                  <div>
+                  <div class="nav navbar-nav" >
+                    <li ><a href="/">BOSH SAHIFA</a></li>
+                    <li><a href="{% url 'markazlar' %}">DXM MANZILLARI</a></li>
+                    <li><a href="{% url 'gallery' %}">GALLERY</a></li>
+                    <li class="current"><a href="{% url 'about' %}">BIZNING MANZIL</a></li>
+                    {% if user.is_authenticated %}
+                    <input type='hidden'>
+                    {% else %}
+                    <li><a href="{% url 'login_user' %}">KIRISH</a></li>
+                    <li><a href="{% url 'signup' %}">REGISTR</a></li>
+                  </div>
+                  <div>
+                    <li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'user_account' %}"> SHAXSIY KABINET</a></li>
+                    <form action="{% url 'logout_user' %}" method="post" class="chiqish" style="display: inline-block">
+                      {% csrf_token %}
+                      <button type='submit' class="chiqish_tugma"  value="">
+                        
+                      CHIQISH<img id="chiqish" width="10%" height="25px" src="{% static 'blog/img/icon/chiqish22.png' %}" alt="">
+                      </button>
+                    </form>
+                    {% endif %}
+                    </li>
+                  </div></div>
+                </ul>
+{% endblock menu %}
+{% block title %}
+<title>Markaz xodimlari</title>
+{% endblock %}
+
+{% block content %}
+<h2 class="mt-3 text-light">Xodimlar ro'yxati</H2>
+<table class="table table-hover table-striped mt-5">
+    <thead>
+        <tr class="thead-light">
+            <th>№</th>
+            <th>FIO</th>
+            <th>BO'LIM</th>
+            <th>LAVOZIM</th>
+            <th>TELEFON</th>
+            <th>MANZIL</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in worker %}
+        <tr class="table-light" style="color:black;" >
+            <td>{{ i.id }}</td>
+            <td class="text-uppercase">{{ i.name }}</td>
+            <td>{{ i.bolim }}</td>
+            <td>{{ i.berth }}</td>
+            <td>{{ i.phone }}</td>
+            <td>{{ i.address }}</td>
+            
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

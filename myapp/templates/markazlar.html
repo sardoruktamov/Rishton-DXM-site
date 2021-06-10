@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Farg`ona viloyati DXM lari</title>
+{% endblock %}
+{% block menu %}
+<ul class="nav navbar-nav" >
+                  <div>
+                  <div class="nav navbar-nav" >
+                    <li ><a href="/">BOSH SAHIFA</a></li>
+                    <li class="current"><a href="{% url 'markazlar' %}">DXM MANZILLARI</a></li>
+                    <li><a href="{% url 'gallery' %}">GALLERY</a></li>
+                    <li><a href="{% url 'about' %}">BIZNING MANZIL</a></li>
+                    {% if user.is_authenticated %}
+                    <input type='hidden'>
+                    {% else %}
+                    <li><a href="{% url 'login_user' %}">KIRISH</a></li>
+                    <li><a href="{% url 'signup' %}">REGISTR</a></li>
+                  </div>
+                  <div>
+                    <li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'user_account' %}"> SHAXSIY KABINET</a></li>
+                    <form action="{% url 'logout_user' %}" method="post" class="chiqish"  style="display: inline-block">
+                      {% csrf_token %}
+                      <button type='submit' class="chiqish_tugma"  value="">
+                        
+                      CHIQISH<img id="chiqish" width="10%" height="25px" src="{% static 'blog/img/icon/chiqish22.png' %}" alt="">
+                      </button>
+                    </form>
+                    {% endif %}
+                    </li>
+                  </div></div>
+                </ul>
+{% endblock menu %}
+
+
+{% block content %}
+
+<!-- about start -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="templatemo_about_top shadow">
+                <div class="templatemo_about_top_title">FARG'ONA VILOYATI DAVLAT XIZMATLARI MARKAZLARI </div>
+                <hr>
+                <table class="table table-bordered mt-5 shadow">
+                    {% csrf_token %}
+                    <tr class="thead-light">
+                        <th>№</th>
+                        <th>MARKAZ NOMI</th>
+                        <th>XIZMAT TELEFONI</th>
+                        <th>POCHTA MANZILI</th>
+                        <th>ISH VAQTI</th>
+                    </tr>
+                    {% for i in center %}
+                        <tr class="table-light jadval-hover" style="" >
+                            <td>{{i.id}}</td>
+                            <td>{{i.markaz_Nomi}}</td>
+                            <td>{{i.telefon}}</td>
+                            <td>{{i.manzil}}</td>
+                            <td>{{i.ish_Vaqti}}</td>
+                        </tr>
+                
+                    {% endfor %}
+                
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row margin30">
+        <div class="col-md-4">
+            <a href="{% url 'services' %}">
+            <div class="templatemo_aboutmid shadow">
+                <div class="circle">1</div>
+                <div class="title">MARKAZLARDAGI XIZMAT TURLARI </div>
+                <div class="text"></div>
+            </div>
+            </a>
+        </div>
+        <div class="col-md-4 s_margin30">
+            <a href="#">
+            <div class="templatemo_aboutmid shadow">
+                <div class="circle">2</div>
+                <div class="title">BO'SH ISH O`RINLARI</div>
+                <div class="text"></div>
+            </div>
+            </a>
+        </div>
+        <div class="col-md-4 s_margin30">
+            <a href="#">
+            <div class="templatemo_aboutmid shadow">
+                <div class="circle">3</div>
+                <div class="title">IXTIYORIY PULLIK XIZMATLAR</div>
+                <div class="text"></div>
+            </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

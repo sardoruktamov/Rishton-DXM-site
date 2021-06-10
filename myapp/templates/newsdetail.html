@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block menu %}
+<ul class="nav navbar-nav" >
+                  <div >
+                  <div class="nav navbar-nav" >
+                    <li class="current"><a href="/">BOSH SAHIFA</a></li>
+                    <li><a href="{% url 'markazlar' %}">DXM MANZILLARI</a></li>
+                    <li><a href="{% url 'gallery' %}">GALLERY</a></li>
+                    <li><a href="{% url 'about' %}">BIZNING MANZIL</a></li>
+                    {% if user.is_authenticated %}
+                    <input type='hidden'>
+                    {% else %}
+                    <li><a href="{% url 'login_user' %}">KIRISH</a></li>
+                    <li><a href="{% url 'signup' %}">REGISTR</a></li>
+                  </div>
+                  <div>
+                    <li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'user_account' %}"> SHAXSIY KABINET</a></li>
+                    <form action="{% url 'logout_user' %}" method="post" class="chiqish" style="display: inline-block">
+                      {% csrf_token %}
+                      <button type='submit' class="chiqish_tugma"  value="">
+                        
+                      CHIQISH<img id="chiqish" width="10%" height="25px" src="{% static 'blog/img/icon/chiqish22.png' %}" alt="">
+                      </button>
+                    </form>
+                    {% endif %}
+                    </li>
+                  </div></div>
+                </ul>
+{% endblock menu %}
+
+{% block content %}
+<!-- about start -->
+<div class="container">
+    <div class="asos-orqaga1"><a class="btn asos-orqaga" href="{% url 'allnews' %}" > 
+        <div class="row" style="display: flex; flex-flow: row; align-items: baseline; justify-content: center;">
+            <div style="width: 40px;">
+                <img src="{% static 'blog/img/icon/orqaga.png' %}" alt="" height="20rem" max-width="10%">
+            </div>
+            <div class="asos-orqaga2" style="font-size: 20px; padding-left: 10px; letter-spacing: 2px;">
+                orqaga
+            </div>
+        </div>
+            
+    </a></div>
+    <div class="row">
+        <div class="col-md-12" style="display: flex; flex-wrap: wrap; padding-top: 20px;">
+            <div  style="padding: 15px; padding-top: 20px; width: 100%;" class="newsdetali">
+                <div class="container" >
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                    <img src="{{newsss.rasm1.url}}" alt="rasm o`rni" style="height: 20%; width: 40%; display: flex; align-items: center; justify-content: center;">
+                    </div>
+                    <div class="ml-5">
+                        {% if newsss.sarlavha %}<h3 >{{newsss.sarlavha|safe}}</h5>{% endif %}
+                            {% if newsss.matn1 %}<p style="text-indent: 40px; font-size: medium; text-align: justify; padding-left: 30px; padding-right: 30px;">{{newsss.matn1|safe}}</p>{% endif %}
+                        </div>
+                    </div>
+                <div class="ml-5">
+                    <div class="col-md-12">{% if not newsss.rasm2 %}
+                        <p style="text-indent: 40px; font-size: medium; text-align: justify;">{{newsss.matn2|safe}}</p> {% endif %}
+                    </div>
+                    <div class="col-md-5">
+                        {% if newsss.rasm2 %}<img src="{{newsss.rasm2.url}}" alt="rasm o`rni" style="height: 90%; width: 90%;">{% endif %}
+                    </div>
+                    <div class="col-md-7">{% if newsss.rasm2 %}
+                        <p style="text-indent: 40px; font-size: medium; text-align: justify;">{{newsss.matn2|safe}}</p> {% endif %}
+                    </div>
+                </div  >
+                <div >
+                    {% if newsss.rasm3 %}<img src="{{newsss.rasm3.url}}" alt="rasm o`rni" style="height: 20%; width: 40%;">{% endif %}
+                    
+                </div  >
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row margin30">
+        <div class="col-md-4">
+            <a href="#">
+            <div class="templatemo_aboutmid shadow">
+                <div class="circle">1</div>
+                <div class="title">DUIS SED ODIO SIT AMET</div>
+                <div class="text">Cate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor.</div>
+            </div>
+            </a>
+        </div>
+        <div class="col-md-4 s_margin30">
+            <a href="#">
+            <div class="templatemo_aboutmid shadow">
+                <div class="circle">2</div>
+                <div class="title">DUIS SED ODIO SIT AMET</div>
+                <div class="text">Cate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor.</div>
+            </div>
+            </a>
+        </div>
+        <div class="col-md-4 s_margin30">
+            <a href="#">
+            <div class="templatemo_aboutmid shadow">
+                <div class="circle">3</div>
+                <div class="title">DUIS SED ODIO SIT AMET</div>
+                <div class="text">Cate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor.</div>
+            </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row margin30">
+        <div class="col-md-12">
+                <div class="templatemo_aboutmid_image clearfix">    
+                    <a href="#">        
+                    <figure class="threecol first about-item">
+                        <img src="{% static 'blog/images/templatemo_about01.jpg' %}" alt="templatemo about1" class="shadow">
+                        <figcaption class="img-title">
+                            <div class="circle">
+                                <i class="fa fa-search"></i>
+                            </div>
+                            <div class="text">
+                                LOREM IPSUM DOLOR ALIQUET. AENEAN SOLLICITUDIN, LOREM QUIS BIBENDUM AUCTOR.  
+                            </div>
+                        </figcaption>
+                    </figure>
+                    </a>
+                    </div>                      
+                <div class="templatemo_aboutmid_image clearfix">  
+                    <a href="#">          
+                    <figure class="threecol first about-item">
+                        <img src="{% static 'blog/images/templatemo_about02.jpg' %}" alt="templatemo about2" class="shadow">
+                        <figcaption class="img-title">
+                            <div class="circle">
+                                <i class="fa fa-search"></i>
+                            </div>
+                            <div class="text">
+                                LOREM IPSUM DOLOR ALIQUET. AENEAN SOLLICITUDIN, LOREM QUIS BIBENDUM AUCTOR.  
+                            </div>
+                        </figcaption>
+                    </figure>
+                    </a>
+                </div>
+            </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="templatemo_about_bot shadow">
+                <div class="col-md-6">
+                <div class="templatemo_about_botbox">
+                <div class="image">
+                        <img src="{% static 'blog/images/templatemo_about03.jpg' %}" alt="templatemo about 03">
+                </div>
+                <div class="text">
+                    <div class="title">ENEAN SOLCITUD</div>
+                    <div class="subtitle">DUIS SED ODID SIT AMET NIBH</div>
+                    <div class="para">Fusce a diam. Etiam mollis, lorem vel luctus malesuada, libero mauris viverra massa, vulputate elementum nunc urna non felis. Phasellus sed metus. 
+                    </div>
+                </div>
+                </div>
+            </div>
+                <div class="col-md-6">
+                <div class="templatemo_about_botbox s_margin30' %}">
+                <div class="image">
+                    <img src="{% static 'blog/images/templatemo_about04.jpg' %}" alt="templatemo about 04">
+                </div>
+                <div class="text">
+                    <div class="title">MAURIS LUCTUS</div>
+                    <div class="subtitle">DUIS SED ODID SIT AMET NIBH</div>
+                    <div class="para">Fusce a diam. Etiam mollis, lorem vel luctus malesuada, libero mauris viverra massa, vulputate elementum nunc urna non felis. Phasellus sed metus. 
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- about end -->
+
+
+{% endblock content %}

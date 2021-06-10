@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Siz uchun foydali videolar sahifasi</title>
+{% endblock %}
+
+{% block menu %}
+
+<ul class="nav navbar-nav" >
+    <div >
+    <div class="nav navbar-nav">
+    <li><a href="/">BOSH SAHIFA</a></li>
+    <li><a href="{% url 'markazlar' %}">DXM MANZILLARI</a></li>
+    <li class="current"><a href="{% url 'gallery' %}">GALLERY</a></li>
+    <li><a href="{% url 'about' %}">BIZNING MANZIL</a></li>
+    {% if user.is_authenticated %}
+    <input type='hidden'>
+    {% else %}
+    <li><a href="{% url 'login_user' %}">KIRISH</a></li>
+    <li><a href="{% url 'signup' %}">REGISTR</a></li>
+    </div>
+    <div>
+    <li>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <li><a href="{% url 'user_account' %}"> SHAXSIY KABINET</a></li>
+    <form action="{% url 'logout_user' %}" method="post" class="chiqish" style="display: inline-block">
+        {% csrf_token %}
+        <button type='submit' class="chiqish_tugma"  value="">
+        
+        CHIQISH<img id="chiqish" width="10%" height="25px" src="{% static 'blog/img/icon/chiqish22.png' %}" alt="">
+        </button>
+    </form>
+    {% endif %}
+    </li>
+    </div></div>
+</ul>
+{% endblock menu %}
+
+{% block content %}
+
+<!-- about start -->
+<div class="container">
+    <div class="asos-orqaga1"><a class="btn asos-orqaga" href="{% url 'allvideo' %}" > 
+        <div class="row" style="display: flex; flex-flow: row; align-items: baseline; justify-content: center;">
+            <div style="width: 40px;">
+                <img src="{% static 'blog/img/icon/orqaga.png' %}" alt="" height="20rem" max-width="10%">
+            </div>
+            <div class="asos-orqaga2" style="font-size: 20px; padding-left: 10px; letter-spacing: 1px;">
+                orqaga
+            </div>
+        </div>
+            
+    </a></div>
+
+    <div class="row">
+        <div class="col-md-12" style="display: flex; flex-wrap: wrap; padding-top: 10px; justify-content: center;">
+            <div class="col-4"  style="padding: 15px; padding-top: 20px; border: 1px solid rgb(5, 138, 138); border-radius: 5px; margin: 4px 5px;">
+                <div class="card">
+                    <video class="embed-responsive embed-responsive-9by4" controls="controls" style="max-width: 100%; max-height: 50%;">
+                        <source  src="{{videos.video.url}}" />
+                    </video>
+                    <div class="card-body">
+                    <h3 class="card-title" style="text-align: center;">{{videos.sarlavha}}</h5>
+                    <p class="card-text" style="text-align: center;">{{videos.matn|safe}}</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+        <div class="col-md-12" style="padding-left: 78px">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                    {% if videos.has_previous %}
+                    <a href="{% url 'allvideo' %}?page={{videos.previous_page_number}}">Orqaga</a>
+                    {% endif %}
+                    </li>
+
+                    {% for i in videos.paginator.page_range %}
+                    <li class="page-item"><a class="page-link " href="?page={{i}}" >{{i}}</a></li>
+                    {% endfor %}    
+
+                    <li class="page-item">
+                    {% if videos.has_next %}
+                    <a href="{% url 'allvideo' %}?page={{videos.next_page_number}}">Oldinga</a>
+                    {% endif %}
+                    </li>
+                </ul>
+            </nav>
+        </div>
+</div>
+
+{% endblock content %}

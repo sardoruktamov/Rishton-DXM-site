@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-8">
+        <h1 class="mt-3 text-light">Rishton tuman Davlat xizmatlari markazi</h1>
+        <p class="text-light font-italic"><span class="font-italic ">Izoh:</span> Bu platforma  plastik shaklidagi kadastr pasportini ro`yxatga olish uchun yaratildi.</p>
+        <p>
+        {% if user.is_authenticated %}
+            <a id="homelink" href="load_form">Ro'yxatga olish</a><br><hr style="max-width: 20%; background-color: blanchedalmond; margin-left: 0%;">
+        {% else %}
+            <a id="homelink" href="{% url 'login_user' %}">Kirish</a><br><hr style="max-width: 20%; background-color: blanchedalmond; margin-left: 0%;">
+        {% endif %}
+            <a id="homelink" href="show" >Ro'yxatni ko'rish</a><hr style="max-width: 20%; background-color: blanchedalmond; margin-left: 0%;">
+        </p>
+    </div>
+    <div class="col-4">
+        <img  style="max-height: 600px;" class="mt-3" src="{% static 'blog/img/right1.png' %}" alt="">
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Biz xaqimizda</title>
+{% endblock %}
+
+{% block menu %}
+    <ul class="nav navbar-nav" >
+        <div">
+        <div class="nav navbar-nav" >
+        <li ><a href="/">BOSH SAHIFA</a></li>
+        <li><a href="{% url 'markazlar' %}">DXM MANZILLARI</a></li>
+        <li><a href="{% url 'gallery' %}">GALLERY</a></li>
+        <li  class="current"><a href="{% url 'about' %}">BIZNING MANZIL</a></li>
+        {% if user.is_authenticated %}
+        <input type='hidden'>
+        {% else %}
+        <li><a href="{% url 'login_user' %}">KIRISH</a></li>
+        <li><a href="{% url 'signup' %}">REGISTR</a></li>
+        </div>
+        <div>
+        <li>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'user_account' %}"> SHAXSIY KABINET</a></li>
+        <form action="{% url 'logout_user' %}" method="post" class="chiqish" style="display: inline-block">
+            {% csrf_token %}
+            <button type='submit' class="chiqish_tugma"  value="" >
+            
+            CHIQISH<img id="chiqish" width="10%" height="25px" src="{% static 'blog/img/icon/chiqish22.png' %}" alt="">
+            </button>
+        </form>
+        {% endif %}
+        </li>
+        </div></div>
+    </ul>
+{% endblock menu %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="templatemo_home_top">
+        <div class="col-md-12">
+            <div class="templatemo_home_top_left shadow"  style="color: #fff; text-align: justify;">
+            {% for i in haqida %}
+                {% if i.sarlavha1 %}<div class="templatemo_hometop_title">{{i.sarlavha1}}</div>{% endif %}
+                {% if i.sarlavha2 %}<div class="templatemo_hometop_stitle">{{ i.sarlavha2 }}</div>{% endif %}
+                <p style="color: rgb(255, 255, 255); text-align: justify;">
+                {% if i.matn1 %} {{ i.matn1|safe }} {% endif %} <br>
+                {% if i.matn2 %}  {{ i.matn2|safe }}  {% endif %} <br>
+                {% if i.matn3 %}  {{ i.matn3|safe }}  {% endif %} </p>
+                
+                <table class="table" style="color: #fff;">
+                    <tr>
+                        <td>Manzil:</td>
+                        <td>{% if i.manzil %}  {{ i.manzil }}  {% endif %}</td>
+                    </tr>
+                    <tr>
+                        <td>Mo'ljal:</td>
+                        <td>{% if i.moljal %}  {{ i.moljal }}  {% endif %} </td>
+                    </tr>
+                    <tr>
+                        <td>Tel:</td>
+                        <td>{% if i.telefon %}  {{ i.telefon }}  {% endif %}</td>
+                    </tr> 
+                    <tr>
+                        <td colspan="2">
+                            <div >
+                                <a href="{% url 'map' %}" class="templatemo_buttongreen" style="color: #fff;"><i class="fas fa-map-marked-alt"></i>Google Map</a>
+                            </div>
+                        </td>
+                    </tr>  
+                </table><hr>
+
+                <div class="clear"></div>
+                {% endfor %}    
+                <div class="templatemo_hometop_title"><p style="font-size: 3rem;">MARKAZ HODIMLARINING RO`YXATI</p> </div> <hr>
+                <table class="table table-bordered mt-5 shadow">
+                    <tr class="thead-light">
+                        <th>№</th>
+                        <th>FIO</th>
+                        <th>Bo'lim</th>
+                        <th>Lavozim</th>
+                        <th>Telefon</th>
+                        <th>Manzil</th>
+                    </tr>
+                    {% for j in xodim %}
+                        <tr class="table-light jadval-hover" >
+                            <td>{{j.id}}</td>
+                            <td style="text-align: left;">{{j.name}}</td>
+                            <td>{{j.bolim}}</td>
+                            <td>{{j.berth}}</td>
+                            <td>{{j.phone}}</td>
+                            <td>{{j.address}}</td>
+                        </tr>
+                
+                    {% endfor %}
+                
+                </table>
+
+          </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,29 @@
+ 
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item">
+            {% if employee.has_previous %}
+            <a class="page-link" href="{% url 'load_form' %}?page={{employee.previous_page_number}}">&laquo; orqaga</a>
+            {% endif %}
+        </li>
+        
+        {% for i in employee.paginator.page_range %}
+        <li class="page-item"><a class="page-link " href="?page={{i}}" >{{i}}</a></li>
+        {% endfor %}
+
+        <!-- {% for i in page_sart %}
+        <li class="page-item"><a class="page-link" href="?page={{i}}" >{{i}}</a></li>
+        {% endfor %} -->
+        <!-- ... -->
+        <!-- {% for i in page_end %}
+        <li class="page-item"><a class="page-link" href="?page={{i}}" >{{i}}</a></li>
+        {% endfor %} -->
+        
+
+        <li class="page-item">
+            {% if employee.has_next %}
+            <a class="page-link" href="{% url 'load_form' %}?page={{employee.next_page_number}}">oldinga &raquo;</a>
+            {% endif %}
+        </li>
+    </ul>
+</nav>

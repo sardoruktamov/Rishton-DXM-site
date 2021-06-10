@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block menu %}
+<ul class="nav navbar-nav" >
+                  <div >
+                  <div class="nav navbar-nav" >
+                    <li><a href="/">BOSH SAHIFA</a></li>
+                    <li><a href="{% url 'markazlar' %}">DXM MANZILLARI</a></li>
+                    <li><a href="{% url 'gallery' %}">GALLERY</a></li>
+                    <li><a href="{% url 'about' %}">BIZNING MANZIL</a></li>
+                    {% if user.is_authenticated %}
+                    <input type='hidden'>
+                    {% else %}
+                    <li><a href="{% url 'login_user' %}">KIRISH</a></li>
+                    <li><a href="{% url 'signup' %}">REGISTR</a></li>
+                  </div>
+                  <div>
+                    <li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'user_account' %}"> SHAXSIY KABINET</a></li>
+                    <form action="{% url 'logout_user' %}" method="post" class="chiqish" style="display: inline-block">
+                      {% csrf_token %}
+                      <button type='submit' class="chiqish_tugma"  value="">
+                        
+                      CHIQISH<img id="chiqish" width="10%" height="25px" src="{% static 'blog/img/icon/chiqish22.png' %}" alt="">
+                      </button>
+                    </form>
+                    {% endif %}
+                    </li>
+                  </div></div>
+                </ul>
+{% endblock menu %}
+
+{% block content %}
+<h2 class="mt-3 text-light">Plastik shakldagi kadastr pasportining ro'yxati</h2>
+<table class="table table-hover table-striped mt-5">
+    {% csrf_token %}
+    <tr class="thead-light">
+        <th>№</th>
+        <th>FIO</th>
+        <th>ARIZA RAQAM</th>
+        <th>TELEFON</th>
+        <th>PLASTIK SERIYA</th>
+        <th>SANA</th>
+        {% if user.is_authenticated  %}
+        <th>ACTION</th>
+        {% endif %}
+    </tr>
+    {% for i in employee %}
+        <tr class="table-light" style="color:black;" >
+            <td>{{ i.eid }}</td>
+            <td class="text-uppercase">{{ i.ename }}</td>
+            <td>{{ i.epetition }}</td>
+            <td>{{ i.econtact }}</td>
+            <td>{{ i.eplastic }}</td>
+            <td>{{ i.date |date:'d b Y' }}</td>
+            {% if user.is_authenticated  %}
+            <td >
+                <a class="btn btn-secondary" href="edit/{{i.id}}">O'zgartirish</a>
+                <a class="btn btn-danger" href="delete/{{i.id}}">O'chirish</a>
+            </td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+</table>
+{% include 'page.html' %}
+{% endblock %}

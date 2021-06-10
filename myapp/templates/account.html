@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Shaxsiy sahifa</title>
+{% endblock %}
+
+{% block menu %}
+<ul class="nav navbar-nav" >
+                  <div >
+                  <div class="nav navbar-nav" >
+                    <li ><a href="/">BOSH SAHIFA</a></li>
+                    <li><a href="{% url 'markazlar' %}">DXM MANZILLARI</a></li>
+                    <li><a href="{% url 'gallery' %}">GALLERY</a></li>
+                    <li><a href="{% url 'about' %}">BIZNING MANZIL</a></li>
+                    {% if user.is_authenticated %}
+                    <input type='hidden'>
+                    {% else %}
+                    <li><a href="{% url 'login_user' %}">KIRISH</a></li>
+                    <li><a href="{% url 'signup' %}">REGISTR</a></li>
+                  </div>
+                  <div>
+                    <li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li class="current"><a href="{% url 'user_account' %}"> SHAXSIY KABINET</a></li>
+                    <form action="{% url 'logout_user' %}" method="post" class="chiqish" style="display: inline-block">
+                      {% csrf_token %}
+                      <button type='submit' class="chiqish_tugma"  value="">
+                        
+                      CHIQISH<img id="chiqish" width="10%" height="25px" src="{% static 'blog/img/icon/chiqish22.png' %}" alt="">
+                      </button>
+                    </form>
+                    {% endif %}
+                    </li>
+                  </div></div>
+                </ul>
+{% endblock menu %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="templatemo_home_top">
+        <div class="col-md-8">
+            <div class="templatemo_home_top_left shadow">
+                <form action="{% url 'user_account' %}" method="post">    
+                    {% csrf_token %}
+                    <div class="col-4 mt-2" style="color: white; font-size: 20px; padding-left: 10px;">
+                        <div class='form-group'>
+                        {{form.as_p}}
+                        <button type="submit" class=" btn templatemo_buttongreen" style="font-size: 20px;">
+                        Saqlash</button>
+                        </div>
+                        <div class='form-group' style="color: white; font-size: 20px; padding-left: 10px;">
+                        <a href="{% url 'change_password' %}" class=" btn templatemo_buttongreen" >PAROL O'ZGARTIRISH</a>
+                        </div>
+                        {% comment %} <div class='form-group' style="color: white; font-size: 20px; padding-left: 10px;">
+                        <a href="{% url 'load_form' %}" class=" btn templatemo_buttongreen">KADASTR</a>
+                        </div> {% endcomment %}
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-4  col-xs-12"><img id="logotip" src="{% static 'blog/img/right1.png' %}" class="shadow" alt="templatemo home image01"></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row margin30">
+        <div class="col-md-12">
+            <div class="templatemo_contact shadow">
+                <div class="title">BIZ BILAN BOG'LANING</div>
+                  <div class="subtitle">MUROJAATINGIZNI YO'LLANG</div>
+                <div class="col-md-6">
+                     <form action="{% url 'sendmail' %}" method="POST">
+                      {% csrf_token %}
+                          <input type="text" name="full_name" id="nametext" class="name" placeholder="ISM FAMILYA">
+                          <input type="email" name="email" id="emailtext" class="email" placeholder="EMAIL">
+                          <textarea name="message" class="message" placeholder="XABAR MATNI ... "></textarea>
+                          {% comment %} <a href="#" class="templatemo_buttongreen" onclick="yuborish()" >YUBORISH</a>  {% endcomment %}
+                          <!-- <input type="submit" class="blue" value="YUBORISHshsh"> -->
+                          <button type="submit" class="blue" >YUBORISH</button>    
+                      </form>
+                  </div>
+              <div class="col-md-6">
+                    <div id="templatemo_map"></div>
+                  </div>
+                    <div class="clear"></div>
+              </div>
+              
+          </div>
+          
+      </div>
+  </div>
+  <!-- contact end -->
+{% endblock content %}

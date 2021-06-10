@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block menu %}
+<ul class="nav navbar-nav" >
+                  <div style="display: flex; justify-content:flex-end;">
+                  <div class="nav navbar-nav" style="display: flex; justify-content:flex-start;">
+                    <li><a href="/">BOSH SAHIFA</a></li>
+                    <li><a href="{% url 'markazlar' %}">DXM MANZILLARI</a></li>
+                    <li><a href="{% url 'gallery' %}">GALLERY</a></li>
+                    <li><a href="{% url 'about' %}">BIZNING MANZIL</a></li>
+                    {% if user.is_authenticated %}
+                    <input type='hidden'>
+                    {% else %}
+                    <li><a href="{% url 'login_user' %}">KIRISH</a></li>
+                    <li class="current"><a href="{% url 'signup' %}">REGISTR</a></li>
+                    {% endif %}
+                  </div>
+                  <div>
+                    <li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'user_account' %}"> SHAXSIY KABINET</a></li>
+                    <form action="{% url 'logout_user' %}" method="post" class="chiqish">
+                      {% csrf_token %}
+                      <button type='submit' class="chiqish_tugma"  value="">
+                        
+                      CHIQISH<img id="chiqish" width="10%" height="25px" src="{% static 'blog/img/icon/chiqish22.png' %}" alt="">
+                      </button>
+                    </form>
+                    {% endif %}
+                    </li>
+                  </div></div>
+                </ul>
+{% endblock menu %}
+
+{% block content %}    
+    <!-- contact start -->
+<div class="container">
+  <div class="row">
+      <div class="col-md-12">
+      
+          <div class="templatemo_contact_top shadow">
+            <form action="{% url 'signup' %}" method="post" style="padding-left: 30px;padding-right: 30px">    
+              {% csrf_token %}
+              {% if error is None %}
+              {% else %}
+              <div class="alert alert-danger mt-4 col-8" style="color: rgb(216, 133, 38); " role="alert">
+                  {{error}}
+              </div>
+              {% endif %}
+              <div class="row">
+                  <div class="col-6 col-xs-12 mt-2" style="color: white; font-size: 20px;">
+                      {% for fm in form %}
+                          <div class='form-group row' style='max-wight: 300px'>
+                          {{fm.label_tag}} {{fm}} {{fe.errors|striptags}}
+                          </div>
+                      {% endfor %}
+                      <button type="submit" class="btn templatemo_buttongreen" style="font-size: 20px;">Kirish</button>
+                  </div>
+               </div>
+          </form><br>
+               <h2 class="mt-3 text-light center">SAYTIMIZNING FOYDALANUVCHILARI</h2>
+          <hr style="width: 80%;">
+          <div>
+            <table class="table table-hover mt-5" style="color:rgb(255, 253, 253);">
+                {% csrf_token %}
+                <tr style="color:black;">
+                    <th>ID</th>
+                    <th>LOGIN</th>
+                    <th>ISM</th>
+                    <th>FAMILYA</th>
+                    <th>SO'NGI TASHRIF</th>
+                    <th>A'ZO BO`LGAN</th>
+                </tr>
+                {% for i in users %}
+                    <tr class="table-light" style="color:rgb(255, 255, 255);" >
+                        <td>{{ i.id }}</td>
+                        <td>{{ i.username }}</td>
+                        <td class="text-uppercase">{{ i.first_name }}</td>
+                        <td class="text-uppercase">{{ i.last_name }}</td>
+                        <td>{{ i.last_login |date:'d b Y' }}</td>
+                        <td>{{ i.date_joined |date:'d b Y' }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <p style="color: white;"> Saytimizdan ro`yxatdan o`tganlar soni  <b> {{users.count}}</b> ta</p>
+
+          </div>
+          </div>
+      </div>
+      
+  </div>
+</div>
+
+
+{% endblock content %}
