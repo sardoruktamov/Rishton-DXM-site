@@ -226,7 +226,7 @@ h1 { width: 100%; font-size: 36px; color: #747474; text-align: center; }
 .templatemo_popular_wrapper a:focus div.popular_box, .templatemo_recent_wrapper a:focus div.recent_box  { background: #e9e9e9; color: #3e3e3e;}
 
 .menu { margin-top: 50px;}
-.navbar { border-radius: 0px; min-height: 80px;}
+.navbar { border-radius: 0px; min-height: 80px; }
 .navbar-default { background: none; border: none; margin: 0px; background: #181818; border-top: 5px solid #1ab2c0; border-left: 1px solid #0a7e8b; border-right: 1px solid #0a7e8b; border-bottom: 1px solid #0a7e8b;}
 .navbar-default .navbar-collapse, .navbar-default .navbar-form { border-color: #000;}
 .navbar-nav { width: 100%;}
@@ -615,6 +615,7 @@ h1 { width: 100%; font-size: 36px; color: #747474; text-align: center; }
 @media (max-width: 450px) { 
 	.templatemo_about_bot .text { float: left; width: 100%; margin-top: 20px;}
 	
+	.navbar{max-width: 91.5%;}
 }
 @media (min-width: 450px) {
 	.templatemo_webtitle {

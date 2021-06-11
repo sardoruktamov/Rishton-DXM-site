@@ -3,34 +3,35 @@
 
 {% block menu %}
 <ul class="nav navbar-nav" >
-                  <div style="display: flex; justify-content:flex-end;">
-                  <div class="nav navbar-nav" style="display: flex; justify-content:flex-start;">
-                    <li><a href="/">BOSH SAHIFA</a></li>
-                    <li><a href="{% url 'markazlar' %}">DXM MANZILLARI</a></li>
-                    <li><a href="{% url 'gallery' %}">GALLERY</a></li>
-                    <li><a href="{% url 'about' %}">BIZNING MANZIL</a></li>
-                    {% if user.is_authenticated %}
-                    <input type='hidden'>
-                    {% else %}
-                    <li><a href="{% url 'login_user' %}">KIRISH</a></li>
-                    <li class="current"><a href="{% url 'signup' %}">REGISTR</a></li>
-                    {% endif %}
-                  </div>
-                  <div>
-                    <li>
-                    {% if user.is_authenticated %}
-                    <li><a href="{% url 'user_account' %}"> SHAXSIY KABINET</a></li>
-                    <form action="{% url 'logout_user' %}" method="post" class="chiqish">
-                      {% csrf_token %}
-                      <button type='submit' class="chiqish_tugma"  value="">
-                        
-                      CHIQISH<img id="chiqish" width="10%" height="25px" src="{% static 'blog/img/icon/chiqish22.png' %}" alt="">
-                      </button>
-                    </form>
-                    {% endif %}
-                    </li>
-                  </div></div>
-                </ul>
+  <div >
+    <div class="nav navbar-nav" >
+      <li ><a href="/">BOSH SAHIFA</a></li>
+      <li><a href="{% url 'markazlar' %}">DXM MANZILLARI</a></li>
+      <li><a href="{% url 'gallery' %}">GALLERY</a></li>
+      <li><a href="{% url 'about' %}">BIZNING MANZIL</a></li>
+      {% if user.is_authenticated %}
+      <input type='hidden'>
+      {% else %}
+      <li ><a href="{% url 'login_user' %}">KIRISH</a></li>
+      <li class="current"><a href="{% url 'signup' %}">REGISTR</a></li>
+    </div>
+    <div>
+      <li>
+      {% endif %}
+      {% if user.is_authenticated %}
+      <li><a href="{% url 'user_account' %}"> SHAXSIY KABINET</a></li>
+      <form action="{% url 'logout_user' %}" method="post" class="chiqish" style="display: inline-block">
+        {% csrf_token %}
+        <button type='submit' class="chiqish_tugma"  value="">
+          
+        CHIQISH<img id="chiqish" width="10%" height="25px" src="{% static 'blog/img/icon/chiqish22.png' %}" alt="">
+        </button>
+      </form>
+      {% endif %}
+      </li>
+    </div>
+  </div>
+</ul>
 {% endblock menu %}
 
 {% block content %}    
