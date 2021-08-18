@@ -54,3 +54,6 @@ class Yangilik(admin.ModelAdmin):
 @admin.register(Biz) 
 class Biz(admin.ModelAdmin):
     list_display = ['sarlavha1', 'sarlavha2', 'matn2']
+
+admin.site.site_title = "Django movies"
+admin.site.site_header = "Rishton DXM saytining boshqaruv paneli"
