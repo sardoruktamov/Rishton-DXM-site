@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from myapp import views
 from django.conf.urls.static import static
 from django.conf import settings
@@ -8,6 +8,7 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('adminstrator/', admin.site.urls),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     #yangiliklar va asosiy sahifa
     path('', views.welcome, name='welcome'),
     path('load_form', views.load_form, name='load_form'), # yangi plastik qoshish
@@ -61,4 +62,7 @@ urlpatterns = [
 
     
     
-]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] #+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,6 +1,18 @@
+from django import forms
 from django.contrib import admin
+
 from .models import Worker, Markazlar, Employee, Yangilik, Biz, Galereya, Videolar, Xizmatlar, Contact
 # Register your models here.
+
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+
+
+class YangilikAdminForm(forms.ModelForm):
+    matn1 = forms.CharField(label="Matn qism", widget=CKEditorUploadingWidget())
+    matn2 = forms.CharField(label="Matn qism", widget=CKEditorUploadingWidget())
+    class Meta:
+        model = Yangilik
+        fields = '__all__'
 
 @admin.register(Contact) 
 class PostModelContact(admin.ModelAdmin):
@@ -34,9 +46,10 @@ class PostModelAdmin(admin.ModelAdmin):
 class PostModelMarkaz(admin.ModelAdmin):
     list_display = ['id', 'markaz_Nomi', 'telefon', 'manzil', 'ish_Vaqti']
 
-@admin.register(Yangilik) 
+@admin.register(Yangilik)
 class Yangilik(admin.ModelAdmin):
     list_display = ['sarlavha', 'matn1', 'sana', 'vaqt']
+    form = YangilikAdminForm
 
 @admin.register(Biz) 
 class Biz(admin.ModelAdmin):
