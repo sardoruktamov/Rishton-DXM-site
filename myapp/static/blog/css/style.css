@@ -2,6 +2,13 @@ body{
     background-color: rgb(75, 74, 74);
     color: antiquewhite;
 }
+
+@media (min-width: 476px) {
+    #phone{
+        display: none;
+        border: 1px solid red;
+    }
+}
 .container .row .col-sm-4 .templatemo_webtitle #logotip{
     height: 420px;
     max-width: 330px;

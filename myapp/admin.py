@@ -14,6 +14,12 @@ class YangilikAdminForm(forms.ModelForm):
         model = Yangilik
         fields = '__all__'
 
+class VideolarAdminForm(forms.ModelForm):
+    matn = forms.CharField(label="Matn qism", widget=CKEditorUploadingWidget())
+    class Meta:
+        model = Videolar
+        fields = '__all__'
+
 @admin.register(Contact) 
 class PostModelContact(admin.ModelAdmin):
     list_display = ['full_name', 'email', 'message']
@@ -32,6 +38,7 @@ class PostModelGalereya(admin.ModelAdmin):
 @admin.register(Videolar) 
 class PostModelVideolar(admin.ModelAdmin):
     list_display = ['sarlavha', 'matn']
+    form = VideolarAdminForm
 
 # admin.site.register(Employee)
 @admin.register(Employee) 

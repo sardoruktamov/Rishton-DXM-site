@@ -81,19 +81,19 @@
                     <tr class="thead-light">
                         <th>№</th>
                         <th>FIO</th>
-                        <th>Bo'lim</th>
-                        <th>Lavozim</th>
+                        <th id="phone">Bo'lim</th>
+                        <th id="phone">Lavozim</th>
                         <th>Telefon</th>
-                        <th>Manzil</th>
+                        <th id="phone">Manzil</th>
                     </tr>
                     {% for j in xodim %}
                         <tr class="table-light jadval-hover" >
                             <td>{{j.id}}</td>
                             <td style="text-align: left;">{{j.name}}</td>
-                            <td>{{j.bolim}}</td>
-                            <td>{{j.berth}}</td>
+                            <td id="phone">{{j.bolim}}</td>
+                            <td id="phone">{{j.berth}}</td>
                             <td>{{j.phone}}</td>
-                            <td>{{j.address}}</td>
+                            <td id="phone">{{j.address}}</td>
                         </tr>
                 
                     {% endfor %}

@@ -4,6 +4,9 @@
 {% block title %}
 <title>Farg`ona viloyati DXM lari</title>
 {% endblock %}
+<styl>
+
+</styl>
 {% block menu %}
 <ul class="nav navbar-nav" >
                   <div>
@@ -52,16 +55,16 @@
                         <th>№</th>
                         <th>MARKAZ NOMI</th>
                         <th>XIZMAT TELEFONI</th>
-                        <th>POCHTA MANZILI</th>
-                        <th>ISH VAQTI</th>
+                        <th id="phone">POCHTA MANZILI</th>
+                        <th id="phone">ISH VAQTI</th>
                     </tr>
                     {% for i in center %}
                         <tr class="table-light jadval-hover" style="" >
                             <td>{{i.id}}</td>
                             <td>{{i.markaz_Nomi}}</td>
                             <td>{{i.telefon}}</td>
-                            <td>{{i.manzil}}</td>
-                            <td>{{i.ish_Vaqti}}</td>
+                            <td id="phone">{{i.manzil}}</td>
+                            <td id="phone">{{i.ish_Vaqti}}</td>
                         </tr>
                 
                     {% endfor %}

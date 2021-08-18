@@ -1,128 +1,147 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-      <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700,800' rel='stylesheet' type='text/css'> 
-      <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
-      
-      <link rel="stylesheet" href="{% static 'blog/css/font-awesome.min.css' %}">
-      <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}"> 
-      <link rel="stylesheet" href="{% static 'blog/css/jquery-ui.css' %}" /> <!-- popular tab -->
-      <link rel="stylesheet" href="{% static 'blog/css/templatemo_misc.css' %}">
-      <link rel="stylesheet" href="{% static 'blog/css/templatemo_style.css' %}">    
-      <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">  
-      <!-- JavaScripts -->   
-      <script src="{% static 'blog/js/jquery-1.11.1.min.js' %}"></script> <!-- lightbox -->
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700,800'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="{% static 'blog/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/jquery-ui.css' %}"/> <!-- popular tab -->
+    <link rel="stylesheet" href="{% static 'blog/css/templatemo_misc.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/templatemo_style.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+    <!-- JavaScripts -->
+    <script src="{% static 'blog/js/jquery-1.11.1.min.js' %}"></script> <!-- lightbox -->
     <script src="{% static 'blog/js/templatemo_custom.js' %}"></script> <!-- lightbox -->
-      <script src="{% static 'blog/js/bootstrap-collapse.js' %}"></script>
-      <script src="{% static 'blog/js/jquery-ui.min.js' %}"></script> <!-- popular tab -->
-      <script src="{% static 'blog/js/index.js' %}"></script>
-  <style>
-        
-        #rishton{
+    <script src="{% static 'blog/js/bootstrap-collapse.js' %}"></script>
+    <script src="{% static 'blog/js/jquery-ui.min.js' %}"></script> <!-- popular tab -->
+    <script src="{% static 'blog/js/index.js' %}"></script>
+    <style>
+
+        #rishton {
             font-size: 30px;
             text-align: center;
-            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         }
-        
+
+        @media (max-width: 476px) {
+            #phone {
+                display: none;
+                border: 1px solid red;
+            }
+        }
     </style>
-    
-      <!-- JavaScripts -->  
-      <!--  yangi qo`shilga linklar -->
+
+    <!-- JavaScripts -->
+    <!--  yangi qo`shilga linklar -->
     {% block title %}
     {% endblock %}
-  </head>
-  <!--  ===DASTURCHI HAQIDA QISQACHA MA'LUMOT === 
-        Bu mening ikkinchi ishim, sizga yoqadi degan umiddaman.
-      FIO: O'ktamov Sardorbek Farxodjon o'g'li (HTML5, CSS, LASS, SASS, JS, Bootstrap, Python, Django(Junior))
-      Manzil: Farg'ona viloyati Rishton tumani
-      tugatgan OTM: TATU Farg`ona filiali 2015-yil (I va AT fakulteti)
-      Email: sardorbek.uktamov.1@mail.ru
-      TEL-1: +998911576777
-      TEL-2: +998993153210
-      telegramm: @S_Uktamov
-    -->
-  <body>
-        <div class="container" style="display: flex; justify-content: center;">
-          {% if user.is_authenticated %}
-          <a href="{% url 'user_account' %}">
-            {% endif%}
+</head>
+<!--  ===DASTURCHI HAQIDA QISQACHA MA'LUMOT ===
+      Bu mening ikkinchi ishim, sizga yoqadi degan umiddaman.
+    FIO: O'ktamov Sardorbek Farxodjon o'g'li (HTML5, CSS, LASS, SASS, JS, Bootstrap, Python, Django(Junior))
+    Manzil: Farg'ona viloyati Rishton tumani
+    tugatgan OTM: TATU Farg`ona filiali 2015-yil (I va AT fakulteti)
+    Email: sardorbek.uktamov.1@mail.ru
+    TEL-1: +998911576777
+    TEL-2: +998993153210
+    telegramm: @S_Uktamov
+  -->
+<body>
+<div class="container" style="display: flex; justify-content: center;">
+    {% if user.is_authenticated %}
+        <a href="{% url 'user_account' %}">
+    {% endif %}
 
-          <div class="user_name">
-            <p class="mr-5 mt-2">Xush kelibsiz {% if user.is_authenticated %}<b> {{ user.first_name }} {{ user.last_name }}</b> {% else %} hurmatli foydalanuvchi{% endif%}!</p>
-          </div>
-          
-          {% if user.is_authenticated %}
-          </a>
-          {% endif%}
+    <div class="user_name">
+        <p class="mr-5 mt-2">Xush kelibsiz {% if user.is_authenticated %}
+            <b> {{ user.first_name }} {{ user.last_name }}</b> {% else %} hurmatli foydalanuvchi{% endif %}!</p>
+    </div>
+
+    {% if user.is_authenticated %}
+        </a>
+    {% endif %}
+</div>
+
+<!-- menu start -->
+<div class="container menu" style="margin-top: 15px;">
+
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="container-fluid" style="display: flex; justify-content: center; align-items: center;">&nbsp;&nbsp;&nbsp;
+                <div class="col-sm-1 col-lg-1 col-xs-1 col-md-1">&nbsp;</div>
+                <div class="col-sm-3 col-lg-3 col-xs-3 col-md-3"><a
+                        href="https://www.facebook.com/fargona.davlatxizmatlariboshqarmasi"><img class="logo-hover"
+                                                                                                 src="{% static 'blog/images/logos/pngegg.png' %}"
+                                                                                                 alt=""></a></div>
+                <div class="col-sm-3 col-lg-3 col-xs-3 col-md-3"><a href="https://t.me/davxizmat"><img
+                        class="logo-hover" src="{% static 'blog/images/logos/TELEGRAM1.png' %}" alt=""></a></div>
+                <div class="col-sm-3 col-lg-3 col-xs-3 col-md-3"><a
+                        href="https://www.youtube.com/c/Davlatxizmatlariagentligi"><img class="logo-hover" id="youtube"
+                                                                                        src="{% static 'blog/images/logos/youtube11.png' %}"
+                                                                                        alt=""></a></div>
+                <div class="col-sm-3 col-lg-3 col-xs-3 col-md-3"><a href="https://davxizmat.uz/"><img class="logo-hover"
+                                                                                                      src="{% static 'blog/images/logos/www4.png' %}"
+                                                                                                      alt=""></a></div>
+
+            </div>
+
         </div>
-          
-        <!-- menu start -->	
-  	<div class="container menu" style="margin-top: 15px;">
-      
-      
-      
-      <div class="row">
-        	<div class="col-sm-4">
-              <div class="container-fluid" style="display: flex; justify-content: center; align-items: center;">&nbsp;&nbsp;&nbsp;
-                <div class="col-sm-1 col-lg-1 col-xs-1 col-md-1">&nbsp;</div> 
-                <div class="col-sm-3 col-lg-3 col-xs-3 col-md-3"><a href="https://www.facebook.com/fargona.davlatxizmatlariboshqarmasi"><img class="logo-hover" src="{%  static 'blog/images/logos/pngegg.png' %}" alt=""></a></div>  
-                <div class="col-sm-3 col-lg-3 col-xs-3 col-md-3"><a href="https://t.me/davxizmat"><img class="logo-hover" src="{%  static 'blog/images/logos/TELEGRAM1.png' %}" alt=""></a></div>  
-                <div class="col-sm-3 col-lg-3 col-xs-3 col-md-3"><a href="https://www.youtube.com/c/Davlatxizmatlariagentligi"><img class="logo-hover" id="youtube"  src="{%  static 'blog/images/logos/youtube11.png' %}" alt=""></a></div>  
-                <div class="col-sm-3 col-lg-3 col-xs-3 col-md-3"><a href="https://davxizmat.uz/"><img class="logo-hover" src="{%  static 'blog/images/logos/www4.png' %}" alt=""></a></div>  
-                  
-              </div>
-              
-          </div>
-        	<div class="col-sm-8" style=" position: relative; left: 14px">
+        <div class="col-sm-8" style=" position: relative; left: 14px">
             <nav class="navbar navbar-default" role="navigation">
-              <div class="container-fluid"> 
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div id="top-menu">
-                  <div class="collapse navbar-collapse main_menu" id="bs-example-navbar-collapse-1">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1"><span
+                                class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+                                class="icon-bar"></span> <span class="icon-bar"></span></button>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div id="top-menu">
+                        <div class="collapse navbar-collapse main_menu" id="bs-example-navbar-collapse-1">
 
-                    {% block menu %}
-                      
-                    {% endblock menu %}
+                            {% block menu %}
 
-                  </div>
-              </div>
-                <!-- /.navbar-collapse --> 
-        <!-- /.container-fluid --> 
+                            {% endblock menu %}
+
+                        </div>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                    <!-- /.container-fluid -->
             </nav>
-          </div>
         </div>
     </div>
-    <!-- menu start -->	
-   
+</div>
+<!-- menu start -->
 
-    <div class="container">
-        {% block content %}
 
-        {% endblock content %}
-    </div>
+<div class="container">
+    {% block content %}
+
+    {% endblock content %}
+</div>
 <!-- footer start -->
-  <div class="container">
+<div class="container">
     <div class="row">
         <div class="col-md-12 margin30 center">Rishton &copy; 2020 By Sardorbek O'ktamov</div>
-          <div class="margin30">&nbsp;</div>
-      </div>
-  </div>
+        <div class="margin30">&nbsp;</div>
+    </div>
+</div>
 <!-- footer end -->
-    <script >
-      function yuborish(){
-          alert("Sizdan uzur so'raymiz! Ushbu sayt test rejimida ishlayotganligi sababli xabaringizni vaqtincha yuborib bo'lmaydi")
-      }
-    </script>
-    <!-- <script src="{% static 'blog/js/index.js' %}"></script> -->
-    <!-- <script src="{% static 'blog/js/jquery-slim.min.js' %}"></script>
+<script>
+    function yuborish() {
+        alert("Sizdan uzur so'raymiz! Ushbu sayt test rejimida ishlayotganligi sababli xabaringizni vaqtincha yuborib bo'lmaydi")
+    }
+</script>
+<!-- <script src="{% static 'blog/js/index.js' %}"></script> -->
+<!-- <script src="{% static 'blog/js/jquery-slim.min.js' %}"></script>
     <script src="{% static 'blog/js/popper.min.js' %}"></script>
     <script src="{% static 'blog/js/bootstrap.js' %}"></script></body> -->
 </html>
