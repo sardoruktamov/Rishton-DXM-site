@@ -20,13 +20,21 @@ class VideolarAdminForm(forms.ModelForm):
         model = Videolar
         fields = '__all__'
 
+class XizmatlarAdminForm(forms.ModelForm):
+    kerakliHujjatlar = forms.CharField(label="Matn qism", widget=CKEditorUploadingWidget())
+    class Meta:
+        model = Xizmatlar
+        fields = '__all__'
+
 @admin.register(Contact) 
 class PostModelContact(admin.ModelAdmin):
     list_display = ['full_name', 'email', 'message']
 
 @admin.register(Xizmatlar) 
 class PostModelXizmatlar(admin.ModelAdmin):
-    list_display = ['xizmatNomi', 'bajarilishMuddati', 'yigimMiqdori', 'qaror']
+    list_display = ['xizmatNomi', 'bajarilishMuddati', 'yigimMiqdori']
+    form = XizmatlarAdminForm
+    list_filter = ['vdo', 'yigimMiqdori', 'bajarilishMuddati']
 
 # admin.site.register(Galereya)
 @admin.register(Galereya) 
@@ -55,7 +63,8 @@ class PostModelMarkaz(admin.ModelAdmin):
 
 @admin.register(Yangilik)
 class Yangilik(admin.ModelAdmin):
-    list_display = ['sarlavha', 'matn1', 'sana', 'vaqt']
+    list_display = ['sarlavha', 'sana', 'vaqt']
+    list_filter = ['sana']
     form = YangilikAdminForm
 
 @admin.register(Biz) 
