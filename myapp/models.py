@@ -14,6 +14,9 @@ class Employee(models.Model):
     def __str__(self):
         return self.ename
     
+    class Meta:
+        verbose_name = "Plastik"
+        verbose_name_plural = "Kadastr plastiglari"
 
 class Worker(models.Model):
     name = models.CharField(max_length=55)
@@ -46,6 +49,10 @@ class Worker(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = "Markaz xodimi"
+        verbose_name_plural = "Markaz xodimlari"
 
 class Markazlar(models.Model):
     markaz_Nomi = models.CharField(max_length=250)
@@ -55,6 +62,10 @@ class Markazlar(models.Model):
 
     def __str__(self):
         return self.markaz_Nomi
+    
+    class Meta:
+        verbose_name = "Markaz"
+        verbose_name_plural = "Markazlar"
 
 class Yangilik(models.Model):
     sarlavha = models.CharField(max_length=200, blank=True)
@@ -68,6 +79,10 @@ class Yangilik(models.Model):
 
     def __str__(self):
         return self.sarlavha
+
+    class Meta:
+        verbose_name = "Yangilik"
+        verbose_name_plural = "Yangiliklar"
 
 class Biz(models.Model):
     sarlavha1 = models.CharField(max_length=300, blank=True)
@@ -84,12 +99,20 @@ class Biz(models.Model):
     def __str__(self):
         return self.sarlavha1
     
+    class Meta:
+        verbose_name = "Biz haqimizda"
+        verbose_name_plural = "Biz haqimizda"
+    
 class Galereya(models.Model):
     rasm = models.ImageField(upload_to='galereya/', blank=True)
     sarlavha = models.CharField(max_length=200, blank=True)
     matn = models.TextField(max_length=300, blank=True)
     sana = models.DateField(null=True, blank=True)
     vaqt = models.TimeField(auto_now_add=True, null=True, blank=True)
+
+    class Meta:
+        verbose_name = "galereya"
+        verbose_name_plural = "Galereya"
     
 class Videolar(models.Model):
     sarlavha = models.CharField(max_length=200, blank=True)
@@ -100,6 +123,10 @@ class Videolar(models.Model):
 
     def __str__(self):
         return self.sarlavha
+
+    class Meta:
+        verbose_name = "video"
+        verbose_name_plural = "Foydali videolar"
     
 class Xizmatlar(models.Model):
     xizmatNomi = models.CharField(max_length=300)
@@ -112,6 +139,10 @@ class Xizmatlar(models.Model):
 
     def __str__(self):
         return self.xizmatNomi
+
+    class Meta:
+        verbose_name = "Xizmat"
+        verbose_name_plural = "Xizmat turlari"
 
 class SubscribeUser(models.Model):
     email = models.EmailField()
