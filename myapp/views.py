@@ -232,7 +232,7 @@ def newsdetail(request, news_id):
     return render(request, 'newsdetail.html', {'newsss': newsss})
 
 
-# barcha videolar
+# barcha videolarni chiqarish
 def allvideo(request):
     videos = Videos.objects.order_by('-sana')
     pgn = Paginator(videos, 6)
@@ -244,7 +244,7 @@ def allvideo(request):
     return render(request, 'all_video.html', {'videos': page})
 
 
-# bitta video
+# bitta video haqida batafsil
 @login_required
 def onevideo(request, video_id):
     videos = get_object_or_404(Videos, pk=video_id)

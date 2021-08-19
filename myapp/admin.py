@@ -1,11 +1,16 @@
 from django import forms
 from django.contrib import admin
+from embed_video.admin import AdminVideoMixin
 
 from .models import Worker, Markazlar, Employee, Yangilik, Biz, Galereya, Videolar, Xizmatlar, Contact, Videos
 # Register your models here.
 
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
+# class AdminVideo(AdminVideoMixin, admin.ModelAdmin):
+#     pass
+
+# admin.site.register(Videos, AdminVideo)
 
 class YangilikAdminForm(forms.ModelForm):
     matn1 = forms.CharField(label="Matn qism", widget=CKEditorUploadingWidget())
@@ -37,9 +42,9 @@ class VideosAdminForm(forms.ModelForm):
     class Meta:
         model = Videos
         fields = '__all__'
-
+#
 @admin.register(Videos)
-class VideosModelContact(admin.ModelAdmin):
+class VideosModelContact(AdminVideoMixin, admin.ModelAdmin):
     list_display = ['id', 'title', 'sana', 'vaqt']
     list_display_links = ['title']
     form = VideosAdminForm
@@ -63,11 +68,6 @@ class PostModelGalereya(admin.ModelAdmin):
     list_display = ['sarlavha', 'matn']
 
 
-# admin.site.register(Videolar)
-# @admin.register(Videolar)
-# class PostModelVideolar(admin.ModelAdmin):
-#     list_display = ['sarlavha', 'matn']
-#     form = VideolarAdminForm
 
 
 # admin.site.register(Employee)
