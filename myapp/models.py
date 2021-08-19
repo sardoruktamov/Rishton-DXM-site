@@ -1,6 +1,21 @@
 from django.db import models
 from django.contrib.auth.models import User
+from embed_video.fields import EmbedVideoField
 
+
+class Videos(models.Model):
+    title = models.CharField(max_length=200, blank=True)
+    description = models.TextField(null=True, blank=True)
+    video = EmbedVideoField()
+    sana = models.DateField(null=True, blank=True)
+    vaqt = models.TimeField(auto_now_add=True, null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "video"
+        verbose_name_plural = "Foydali videolar"
 
 class Employee(models.Model):
     eid = models.CharField(max_length=20)
@@ -124,9 +139,7 @@ class Videolar(models.Model):
     def __str__(self):
         return self.sarlavha
 
-    class Meta:
-        verbose_name = "video"
-        verbose_name_plural = "Foydali videolar"
+
     
 class Xizmatlar(models.Model):
     xizmatNomi = models.CharField(max_length=300)

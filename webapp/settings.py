@@ -26,7 +26,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # my apps
     'myapp',
+
+    # other apps
+    'embed_video',
     'ckeditor',
     'ckeditor_uploader',
 ]

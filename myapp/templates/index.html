@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load embed_video_tags %}
 {% load static %}
 {% block title %}
 <title>Rishton tuman Davlat xizmatlari markazi</title>
@@ -63,20 +64,20 @@
             <div class="templatemo_home_botleft shadow">
             {% if vid %}
             {% for i in vid %}
-                <div class="container-fluid"> 
-                    <video autoplay  style="width: 100%; height: 100%;" controls>
-                        <source  src="{{i.video.url}}" />
-                    </video>
+
+                <div class="movie">
+                        {% video i.video '100%x460' %}
+
                 </div>
                 <div class="para">
-                    <div class="big ">{{i.sarlavha}}</div>
+                    <div class="big ">{{i.title}}</div>
                     <div class="text">
-                        <p>{{i.matn|safe | truncatechars:400}}</p></div>
+                        <p>{{i.description|safe | truncatechars:400}}</p></div>
                     <a href="{% url 'onevideo' i.id %}"><div class="templatemo_buttongreen" >BATAFSIL..</div></a>
                     <div class="clear"></div>
                 </div>
             {% endfor %}
-            {% else %} 
+            {% else %}
               <h2>Ayni vaqtda yangiliklar mavjud emas!</h2>
             {% endif %}
             </div>
@@ -111,16 +112,15 @@
                     </div>
                     <div id="tabs-2">
                         <div class="templatemo_recent_wrapper">
-                        {% if video %}
-                            {% for x in video %}
+                        {% if videos %}
+                            {% for x in videos %}
                             <a href="{% url 'onevideo' x.id %}">
-                            <div class="recent_box">
+                            <div class="recent_box" style="padding-bottom: 0px; height: 120px">
                                 <div class="col-md-5" style="padding-left: 0px;">
-                                    <video class="embed-responsive embed-responsive-9by4"   style="max-width: 100%; max-height: 50%;">
-                                        <source  src="{{x.video.url}} " />
-                                    </video>
+                                    {% video x.video '100x90' %}
                                 </div>
-                                <div class="text">{{x.sarlavha|safe | truncatechars:70}}</div>
+                                <div class="text">{{x.title|safe | truncatechars:70}}</div>
+                                <p>{{ x.sana }}</p>
                             </div>
                             </a>
                             {% endfor %}
