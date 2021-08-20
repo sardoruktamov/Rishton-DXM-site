@@ -42,6 +42,7 @@ class VideosAdminForm(forms.ModelForm):
 @admin.register(Videos)
 class VideosModelContact(AdminVideoMixin, admin.ModelAdmin):
     list_display = ['id', 'title', 'sana', 'vaqt']
+    search_fields = ['title']
     list_display_links = ['title']
     form = VideosAdminForm
 
@@ -85,6 +86,7 @@ class PostModelMarkaz(admin.ModelAdmin):
 @admin.register(Yangilik)
 class Yangilik(admin.ModelAdmin):
     list_display = ['sarlavha', 'sana', 'vaqt']
+    search_fields = ['sarlavha', 'matn1']
     list_filter = ['sana']
     form = YangilikAdminForm
 
@@ -94,5 +96,5 @@ class Biz(admin.ModelAdmin):
     list_display = ['sarlavha1', 'sarlavha2', 'matn2']
 
 
-admin.site.site_title = "Django movies"
+admin.site.site_title = "Rishton tuman Davlat xizmatlari sayti"
 admin.site.site_header = "Rishton DXM saytining boshqaruv paneli"
