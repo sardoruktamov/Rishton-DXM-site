@@ -248,7 +248,6 @@ def allvideo(request):
 @login_required
 def onevideo(request, video_id):
     videos = get_object_or_404(Videos, pk=video_id)
-    print(videos.video, '++++++++++++++++++++++++++')
     return render(request, 'onevideo.html', {'videos': videos})
 
 
