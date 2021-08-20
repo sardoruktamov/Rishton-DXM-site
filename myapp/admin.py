@@ -7,10 +7,6 @@ from .models import Worker, Markazlar, Employee, Yangilik, Biz, Galereya, Videol
 
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
-# class AdminVideo(AdminVideoMixin, admin.ModelAdmin):
-#     pass
-
-# admin.site.register(Videos, AdminVideo)
 
 class YangilikAdminForm(forms.ModelForm):
     matn1 = forms.CharField(label="Matn qism", widget=CKEditorUploadingWidget())

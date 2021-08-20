@@ -123,7 +123,7 @@ def signup(request):
                                                 password=request.POST['password1'])
                 user.save()
                 login(request, user)
-                return render(request, 'index.html')
+                return redirect('/')
             except IntegrityError:
                 return render(request, 'signup.html',
                               {'form': SignUpForm(), 'error': 'Bunday foydalanuvchi avval ro`yxatdan o`tgan!'})
@@ -297,5 +297,4 @@ def sendmail(request):
         contact_user.save()
         return render(request, 'contact.html')
     else:
-        print('555555555555555555555555555555555555555555555')
         return redirect('services')
