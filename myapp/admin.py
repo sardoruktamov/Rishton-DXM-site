@@ -87,6 +87,8 @@ class PostModelMarkaz(admin.ModelAdmin):
 class Yangilik(admin.ModelAdmin):
     list_display = ['sarlavha', 'sana', 'vaqt']
     search_fields = ['sarlavha', 'matn1']
+    save_on_top = True  # saqlash va o`chirish tugmalarini sahifa yuqorisiga ham qo`shimcha sifatida olib chiqish uchun
+    save_as = True
     list_filter = ['sana']
     form = YangilikAdminForm
 
