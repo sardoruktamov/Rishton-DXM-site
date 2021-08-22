@@ -8,11 +8,6 @@ django-ckeditor==6.1.0
 django-embed-video==1.4.0
 django-environ==0.4.5
 django-js-asset==1.2.2
-django-parler==2.2
-django-rest-auth==0.9.5
-djangorestframework==3.12.4
-djangorestframework-simplejwt==4.7.2
-drf-yasg==1.20.0
 idna==3.2
 inflection==0.5.1
 itypes==1.2.0
@@ -25,8 +20,6 @@ pyparsing==2.4.7
 python-gettext==4.0
 pytz==2021.1
 requests==2.26.0
-ruamel.yaml==0.17.10
-ruamel.yaml.clib==0.2.6
 six==1.16.0
 sqlparse==0.4.1
 uritemplate==3.0.1

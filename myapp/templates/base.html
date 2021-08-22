@@ -133,7 +133,7 @@
 <!-- footer start -->
 <div class="container">
     <div class="row">
-        <div class="col-md-12 margin30 center">Rishton &copy; 2020 By Sardorbek O'ktamov</div>
+        <div class="col-md-12 margin30 center">Rishton &copy; 2020 By {% if request.user.is_superuser %}<a href="/adminstrator/">{% endif %} Sardorbek O'ktamov </a></div>
         <div class="margin30">&nbsp;</div>
     </div>
 </div>
