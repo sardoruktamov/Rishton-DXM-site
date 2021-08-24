@@ -12,7 +12,9 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 
-
+#404 page
+def error_404_view(request, exception):
+    return render(request, 'error-404.html')
 
 # asosiy sahifa
 def welcome(request):

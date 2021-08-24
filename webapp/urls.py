@@ -1,7 +1,9 @@
 
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import handler404, url  # 404 page
 from myapp import views
+import myapp
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth import views as auth_views
@@ -63,6 +65,9 @@ urlpatterns = [
     
     
 ] #+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+handler404 = 'myapp.views.error_404_view'   # 404 error page
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
