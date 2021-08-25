@@ -102,7 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'uz'
 
-TIME_ZONE = 'Asia/tashkent'
+TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 
@@ -118,6 +118,7 @@ STATIC_URL = '/static/'
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [STATIC_DIR]
 LOGIN_URL = '/login'
+STATIC_ROOT = os.path.join(BASE_DIR, '../static/')
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
