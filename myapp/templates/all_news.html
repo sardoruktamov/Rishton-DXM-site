@@ -40,11 +40,9 @@
 
 
 {% block content %}
-
-    <!-- about start -->
-    <div class="container">
-        <div class="asos-orqaga1"><a class="btn asos-orqaga" href="{% url 'welcome' %}">
-            <div class="row" style="display: flex; flex-flow: row; align-items: baseline; justify-content: center;">
+    <div class="container ">
+        <div class="asos-orqaga1" style="padding-bottom: 5px"><a class="btn asos-orqaga" href="{% url 'welcome' %}">
+            <div class="row " style="display: flex; flex-flow: row; align-items: baseline; justify-content: center;">
                 <div style="width: 40px;">
                     <img src="{% static 'blog/img/icon/orqaga.png' %}" alt="" height="20rem" max-width="10%">
                 </div>
@@ -52,26 +50,38 @@
                     orqaga
                 </div>
             </div>
+        </a>
+        </div>
+        <div class="row pt-5">
+            <div class="col-md-12">
+                <div class="templatemo_gallery_left shadow">
+                    {% if news %}
+                        {% for i in news %}
+                            <div class="col-sm-3 margin30">
+                                <img src="{{ i.rasm1.url }}" alt="gallery 1">
+                                <div class="over">
+                                    {% if i.sarlavha %}<span class="title"><a
+                                            href="{% url 'newsdetail' i.id %}"> {{ i.sarlavha|safe | truncatechars:80 }} </a></span> {% endif %}
+                                    {% if i.matn %}<span class="text"><a
+                                            href="{% url 'newsdetail' i.id %}"> {{ i.matn1|safe | truncatechars:50 }} </a></span>{% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <h2>Yangiliklar mavjud emas!</h2>
+                    {% endif %}
+                    <!-- paginator end -->
+                </div>
+            </div>
+        </div>
+    </div>
 
-        </a></div>
+    <!-- about start -->
+    <div class="container">
+
         <div class="row">
 
-            <div class="col-md-12" style="display: flex; flex-wrap: wrap; padding-top: 10px;">
-                {% for i in news %}
-                    <div class="col-3" id="yangilik" style="padding: 15px; padding-top: 20px;">
-
-                        <div class="card" style="width: 25rem;">
-                            <img class="card-img-top" src="{{ i.rasm1.url }}" alt="Card image cap"
-                                 style="height: 18rem;">
-                            <div class="card-body">
-                                <h3 class="card-title">{{ i.sarlavha|safe | truncatechars:50 }}</h3>
-                                    <p class="card-text">{{ i.matn1|safe | truncatechars:50 }}</p>
-                                    <a href="{% url 'newsdetail' i.id %}" class="templatemo_buttongreen">Batafsil</a>
-                            </div>
-                        </div>
-                    </div>
-            {% endfor %}
-            </div>
+            
             <div class="col-md-12" style="padding-left: 33px">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
